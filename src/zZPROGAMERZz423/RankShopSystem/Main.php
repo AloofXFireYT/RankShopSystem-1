@@ -42,11 +42,11 @@ class Main extends PluginBase implements Listener {
                     $sender->sendMessage("§c");
                         break;
                     case 1:
-                    $this->group1($sender);
+                    $this->VIP($sender);
                     $sender->setNameTag($sender->getNameTag() . "§aBUYER");
                         break;
                     case 2:
-                    $this->group2($sender);
+                    $this->MVP($sender);
                $sender->setNameTag($sender->getNameTag() . "§aBUYER");
                         break;
                     case 3:
@@ -66,8 +66,8 @@ class Main extends PluginBase implements Listener {
       $form->setTitle($this->getConfig()->get("title.rshop"));
        $form->setContent("§7Buy ranks here using in-game coins");
         $form->addButton("§cExit", 0);
-         $form->addButton($this->getConfig()->get("group1.name"), 1);
-          $form->addButton($this->getConfig()->get("group2.name"), 2);
+         $form->addButton($this->getConfig()->get("VIP.name"), 1);
+          $form->addButton($this->getConfig()->get("MVP.name"), 2);
 			$form->addButton($this->getConfig()->get("group3.name"), 3);
 			$form->addButton($this->getConfig()->get("group4.name"), 4);
 			$form->addButton($this->getConfig()->get("group5.name"), 5);
@@ -83,19 +83,19 @@ class Main extends PluginBase implements Listener {
             switch ($result) {
                     case 1:
             $coins = $this->eco->myMoney($sender);
-            $cost = $this->getConfig()->get("group1.cost");
+            $cost = $this->getConfig()->get("VIP.cost");
             if($coins >= $cost){
                $this->eco->reduceMoney($sender, $cost);	
-            $this->getServer()->dispatchCommand(new ConsoleCommandSender(), "setgroup " .  $sender->getName() . " group1");               
+            $this->getServer()->dispatchCommand(new ConsoleCommandSender(), "setgroup " .  $sender->getName() . " VIP");               
               $sender->getLevel()->addSound(new EndermanTeleportSound($sender));
-               $sender->sendMessage($this->getConfig()->get("group1.complete"));
+               $sender->sendMessage($this->getConfig()->get("VIP.complete"));
 		    $this->getServer()->dispatchCommand(new ConsoleCommandSender(), "hub");
 		    $sender->sendMessage($this->getConfig()->get("othermsg1complete.txt"));
 		    $this->vipfeatures($sender);
 		    $sender->addTitle($this->getConfig()->get("purchase1.title"));
               return true;
             }else{
-               $sender->sendMessage($this->getConfig()->get("group1.failed"));
+               $sender->sendMessage($this->getConfig()->get("VIP.failed"));
                $sender->getLevel()->addSound(new AnvilFallSound($sender));
                $sender->sendMessage("§eEarn coins by winning a game on the server.");
 		    $sender->sendMessage($this->getConfig()->get("othermsg1fail.txt"));
@@ -106,8 +106,8 @@ class Main extends PluginBase implements Listener {
                         break;
             }
         });
-        $form->setTitle($this->getConfig()->get("group1.name"));
-$form->setContent($this->getConfig()->get("group1.info")); 
+        $form->setTitle($this->getConfig()->get("VIP.name"));
+$form->setContent($this->getConfig()->get("VIP.info")); 
         $form->setButton1("§l§aBUY", 1);
         $form->setButton2("§l§cCANCEL", 2);
         $form->sendToPlayer($sender);
@@ -126,7 +126,7 @@ $form->setContent($this->getConfig()->get("group1.info"));
             }
         });
         $form->setTitle("§bFeatures");
-$form->setContent($this->getConfig()->get("group1.features"));
+$form->setContent($this->getConfig()->get("VIP.features"));
         $form->setButton1("§l§aContinue", 1);
         $form->sendToPlayer($sender);
     }
@@ -148,7 +148,7 @@ $form->setContent($this->getConfig()->get("group1.features"));
             }
         });
         $form->setTitle("§bFeatures");
-$form->setContent($this->getConfig()->get("group2.features"));
+$form->setContent($this->getConfig()->get("MVP.features"));
         $form->setButton1("§l§aContinue", 1);
         $form->sendToPlayer($sender);
     }
@@ -213,11 +213,11 @@ $form->setContent($this->getConfig()->get("group5.features"));
             switch ($result) {
                     case 1:
             $coins = $this->eco->myMoney($sender);
-            $cost = $this->getConfig()->get("group2.cost");
+            $cost = $this->getConfig()->get("MVP.cost");
             if($coins >= $cost){
                $this->eco->reduceMoney($sender, $cost);
-               $this->getServer()->dispatchCommand(new ConsoleCommandSender(), "setgroup " . "§r" . " group2");
-               $sender->sendMessage($this->getConfig()->get("group2.complete"));
+               $this->getServer()->dispatchCommand(new ConsoleCommandSender(), "setgroup " . "§r" . " MVP");
+               $sender->sendMessage($this->getConfig()->get("MVP.complete"));
 		    $this->getServer()->dispatchCommand(new ConsoleCommandSender(), "hub");
 		    $this->vipplusfeatures($sender);
 		    $sender->sendMessage($this->getConfig()->get("othermsg2complete.txt"));
@@ -225,7 +225,7 @@ $form->setContent($this->getConfig()->get("group5.features"));
 				      
               return true;
             }else{
-               $sender->sendMessage($this->getConfig()->get("group2.failed"));
+               $sender->sendMessage($this->getConfig()->get("MVP.failed"));
                $sender->sendMessage("§eEarn coins by winning a game on the server");
 		    $sender->sendMessage($this->getConfig()->get("othermsg2fail.txt"));
             }
@@ -236,8 +236,8 @@ $form->setContent($this->getConfig()->get("group5.features"));
                         break;
             }
         });
-        $form->setTitle($this->getConfig()->get("group2.name")); 
-        $form->setContent($this->getConfig()->get("group2.info"));
+        $form->setTitle($this->getConfig()->get("MVP.name")); 
+        $form->setContent($this->getConfig()->get("MVP.info"));
         $form->setButton1("§l§aBUY", 1);
         $form->setButton2("§l§cCANCEL", 2);
         $form->sendToPlayer($sender);
