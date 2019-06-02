@@ -1,7 +1,7 @@
 name: RankShopSystem
 version: 1.0.0
 main: zZPROGAMERZz423\RankShopSystem\Main
-api: [3.0.0, 3.1.0, 4.0.0]
+api: [3.8.3]
 author: zZPROGAMERZz423 | §eFor issues report by §2Visiting GitHub.com/zZPROGAMERZz423
 
 depend: [PureChat, PurePerms, EconomyAPI]
